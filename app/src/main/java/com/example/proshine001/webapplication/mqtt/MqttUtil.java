@@ -3,6 +3,7 @@ package com.example.proshine001.webapplication.mqtt;
 import android.content.Context;
 
 import com.example.proshine001.webapplication.mqtt.enumer.EnumUniformID;
+import com.example.proshine001.webapplication.utils.SystemInfo;
 import com.orhanobut.logger.Logger;
 import org.eclipse.paho.android.service.MqttAndroidClient;
 import org.eclipse.paho.client.mqttv3.DisconnectedBufferOptions;
@@ -37,7 +38,7 @@ public class MqttUtil {
     private MqttClientPersistence mPersistence;
     private boolean isConnect;
     private static MqttUtil defaultInstance;
-    public static final String TOPIC = EnumUniformID.BROADCAST_TOPIC;
+    //public static final String TOPIC = EnumUniformID.BROADCAST_TOPIC;
 
     /**
      * 构造函数
@@ -124,7 +125,7 @@ public class MqttUtil {
         mPersistence = new MemoryPersistence();
         mqttAndroidClient = new MqttAndroidClient(mApplicationContext,
                 "tcp://192.168.0.30:18880",
-                "" + 111111,
+                "" + SystemInfo.getCardNum(mApplicationContext),
                 mPersistence);
 
 
@@ -284,7 +285,7 @@ public class MqttUtil {
         try {
             if(this.mqttAndroidClient != null) {
                 mqttAndroidClient.subscribe("all", 0, this.messageListener);
-                mqttAndroidClient.subscribe(TOPIC, 2,messageListener);
+                mqttAndroidClient.subscribe(SystemInfo.getCardNum(mApplicationContext), 2,messageListener);
             }
 
         } catch (Exception ex) {

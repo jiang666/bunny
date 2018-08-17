@@ -11,7 +11,7 @@ public class EnumUniformID {
 
     // 广播Topic
     //public static final String BROADCAST_TOPIC = "broadcast";
-    public static final String BROADCAST_TOPIC = "0736027930";
+    //public static final String BROADCAST_TOPIC = "0736027930";
 
     // 服务器客户ID
     public static final String SERVER_CLIENT_ID = "CID_BT_SERVER";

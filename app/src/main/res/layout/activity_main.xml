@@ -1,17 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#F1F1F1"
     android:orientation="vertical"
     tools:context="com.example.proshine001.webapplication.MainActivity">
     <TextView
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:layout_height="60dp"
+        android:background="#3398CC"
+        android:text="首页"
+        android:textSize="40sp"
+        />
+    <ImageView
+        android:layout_height="200dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/background"
+        android:layout_width="match_parent"/>
+    <TextView
         android:id="@+id/tv_content"
-        android:layout_width="wrap_content"
-        android:text="4599949499"
-        android:textSize="18sp"
-        android:layout_height="wrap_content"/>
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:clickable="true"
+        android:layout_height="100dp"
+        android:layout_margin="5dp"
+        android:text="绑定学生卡"
+        android:textSize="40sp"
+        android:background="@drawable/webapp"
+        />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_recognition"
