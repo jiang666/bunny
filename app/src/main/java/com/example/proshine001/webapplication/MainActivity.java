@@ -1,16 +1,13 @@
 package com.example.proshine001.webapplication;
 
 import android.content.Context;
-import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,31 +30,30 @@ import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
 
 public class MainActivity extends AppCompatActivity{
 
-    private TextView tv_content;
     private ArrayList<ChargeRecordsInfo> list;
-    private RecyclerView recyclerView;
     private LinearLayoutManager layoutManager;
     private RecognitionRecyclerAdapter recycleAdapter;
+    @BindView(R.id.tv_content)
+    TextView tv_content;
+    @BindView(R.id.rv_recognition)
+    RecyclerView recyclerView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        tv_content = (TextView)findViewById(R.id.tv_content);
-        recyclerView = (RecyclerView)findViewById(R.id.rv_recognition);
-        tv_content.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                quitApp();
-                Logger.e("---","点击");
-            }
-        });
+        ButterKnife.bind(this);
         list = ListSaveUtils.getStorageEntities(this);
         recycleAdapter= new RecognitionRecyclerAdapter(this , list );
         layoutManager = new LinearLayoutManager(this);
@@ -102,9 +98,10 @@ public class MainActivity extends AppCompatActivity{
         recycleAdapter.notifyDataSetChanged();
         ListSaveUtils.saveStorage2SDCard(list,MainActivity.this);
     }
-    private void quitApp() {
+    @OnClick(R.id.tv_content)
+    public void quitApp() {
         if (this.isDestroyed()) {
-            Logger.d("窗口已关闭, 退出窗口不显示!");
+            Logger.d("首页已关闭, 退出窗口不显示!");
             return;
         }
         final InputPasswordDialog dialog = new InputPasswordDialog(this,"绑定卡号",
