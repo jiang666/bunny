@@ -17,6 +17,7 @@
     <!-- 在SD卡上创建与删除权限 -->
     <uses-permission android:name="android.permission.MOUNT_FORMAT_FILESYSTEMS" />
     <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.VIBRATE"> </uses-permission>
     <application
         android:name="com.example.proshine001.webapplication.BaseApplication"
         android:allowBackup="true"

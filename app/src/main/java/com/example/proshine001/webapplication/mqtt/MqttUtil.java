@@ -124,7 +124,7 @@ public class MqttUtil {
         //mPersistence = new MqttDefaultFilePersistence(myDir.getAbsolutePath());
         mPersistence = new MemoryPersistence();
         mqttAndroidClient = new MqttAndroidClient(mApplicationContext,
-                "tcp://192.168.0.30:18880",
+                "tcp://bunnytouch.vicp.cc:18880",
                 "" + SystemInfo.getCardNum(mApplicationContext),
                 mPersistence);
 

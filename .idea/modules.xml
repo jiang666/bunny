@@ -2,9 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/WebApplication.iml" filepath="$PROJECT_DIR$/WebApplication.iml" />
       <module fileurl="file://D:\andriod_work\bunny\WebApplication.iml" filepath="D:\andriod_work\bunny\WebApplication.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/bunny.iml" filepath="$PROJECT_DIR$/bunny.iml" />
+      <module fileurl="file://E:\proshine\WebApplication\bunny.iml" filepath="E:\proshine\WebApplication\bunny.iml" />
     </modules>
   </component>
 </project>

@@ -1,6 +1,10 @@
 package com.example.proshine001.webapplication;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -47,6 +51,7 @@ public class MainActivity extends AppCompatActivity{
     TextView tv_content;
     @BindView(R.id.rv_recognition)
     RecyclerView recyclerView;
+    private NotificationManager manager;
 
 
     @Override
@@ -75,6 +80,7 @@ public class MainActivity extends AppCompatActivity{
 
         });
         EventBus.getDefault().register(this);
+        manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
     }
 
     public static boolean hasNetwork(Context context) {
@@ -97,6 +103,29 @@ public class MainActivity extends AppCompatActivity{
         list.add(chargeRecordsInfo);
         recycleAdapter.notifyDataSetChanged();
         ListSaveUtils.saveStorage2SDCard(list,MainActivity.this);
+        putNotification(cardnum);
+    }
+    private void putNotification(String student){
+        Notification.Builder builder = new Notification.Builder(MainActivity.this);
+        builder.setSmallIcon(R.drawable.ic_launcher);
+        builder.setTicker("Bunny");
+        builder.setWhen(System.currentTimeMillis());
+        builder.setContentTitle("标题栏");
+        builder.setContentText(student);
+
+        Intent intent = new Intent(MainActivity.this, MainActivity.class);
+        PendingIntent ma = PendingIntent.getActivity(MainActivity.this,0,intent,0);
+        builder.setContentIntent(ma);//设置点击过后跳转的activity
+
+/*builder.setDefaults(Notification.DEFAULT_SOUND);//设置声音
+builder.setDefaults(Notification.DEFAULT_LIGHTS);//设置指示灯
+builder.setDefaults(Notification.DEFAULT_VIBRATE);//设置震动*/
+        builder.setDefaults(Notification.DEFAULT_ALL);//设置全部
+
+        Notification notification = builder.build();//4.1以上用.build();
+        notification.flags |= Notification.FLAG_AUTO_CANCEL;// 点击通知的时候cancel掉
+        manager.notify(00,notification);//00 变量标识 不然不会同时显示。
+
     }
     @OnClick(R.id.tv_content)
     public void quitApp() {
